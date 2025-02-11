@@ -1,17 +1,42 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Bucket List{% endblock %}</title>
+    <link rel="icon"
+          href="{{ asset("images/favicon.png") }}">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset("styles/app.css") }}">
+    {% endblock %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+</head>
+<body>
+<header>
+    <div class="logo-container">
+        <img src="{{ asset("images/logo.svg") }}" alt="logo"/>
+        <h1>BUCKET LIST</h1>
+    </div>
+    <nav>
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+        </ul>
+    </nav>
+</header>
+
+{# Le block body ci-dessous sera remplacé par les mêmes blocks des autres pages #}
+<main>
+    {% block body %}
+
+
+    {% endblock %}
+</main>
+
+<footer>
+    <p>@Bucket-List &copy; 2025</p>
+</footer>
+</body>
 </html>
