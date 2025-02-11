@@ -13,16 +13,19 @@
     {% endblock %}
 </head>
 <body>
+
+
+
 <header>
     <div class="logo-container">
         <img src="{{ asset("images/logo.svg") }}" alt="logo"/>
         <h1>BUCKET LIST</h1>
     </div>
-    <nav>
-        <ul>
-            <a href="{{ path('app_home') }}"><li>Home</li></a>
-            <a href="{{ path('app_about') }}"><li>About</li></a>
-        </ul>
+    <nav class="navbar bg-body-color">
+        <div class="container-fluid justify-content-start">
+            <a href="{{ path('app_home') }}"><button class="btn btn-outline-primary me-2" type="button">Home</button></a>
+            <a href="{{ path('app_about') }}"><button class="btn btn-sm btn-outline-secondary" type="button">About</button></a>
+        </div>
     </nav>
 </header>
 
