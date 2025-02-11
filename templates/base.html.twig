@@ -6,7 +6,6 @@
     <link rel="icon"
           href="{{ asset("images/favicon.png") }}">
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset("styles/app.css") }}">
     {% endblock %}
 
     {% block javascripts %}
@@ -21,8 +20,8 @@
     </div>
     <nav>
         <ul>
-            <li>Home</li>
-            <li>About</li>
+            <a href="{{ path('app_home') }}"><li>Home</li></a>
+            <a href="{{ path('app_about') }}"><li>About</li></a>
         </ul>
     </nav>
 </header>
