@@ -5,43 +5,22 @@
 {% block body %}
 
     <div class="container">
-        <h2>
-            About...
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-boombox" viewBox="0 0 16 16">
-                <path d="M2.5 5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2 0a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m7.5-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m1.5.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m-7-1a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm5.5 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
-                <path d="M11.5 13a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5m0-1a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3M5 10.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
-                <path d="M7 10.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0m-1 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"/>
-                <path d="M14 0a.5.5 0 0 1 .5.5V2h.5a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12.5V.5A.5.5 0 0 1 14 0M1 3v3h14V3zm14 4H1v7h14z"/>
-            </svg>
-        </h2>
 
+        <h2 class="fw-black mt-2">Liste des membres de la team :</h2>
         <div class="d-flex">
-        <div class="card m-3 float-start" style="width: 26rem;">
-            <img src="https://picsum.photos/200" class="card-img-top object-fit-cover" alt="...">
-            <div class="card-body">
-                <p class="card-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pulvinar ex nec tellus consequat fermentum. Pellentesque venenatis nunc ac sapien varius tincidunt. Morbi pharetra quam vitae ex finibus, in dapibus libero rutrum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras egestas augue nibh, ac hendrerit dolor egestas et. Proin convallis ante dolor, ac egestas nulla ultricies vel. Sed id venenatis odio, sit amet condimentum ex. Quisque euismod consequat ligula. Mauris cursus dignissim ex, ut maximus metus fermentum bibendum. Sed commodo ex id facilisis laoreet. Fusce eleifend est massa, eget bibendum dolor semper quis. Pellentesque sodales lectus justo, vel ultrices sapien tincidunt vitae. Duis porta quam et tincidunt auctor.
-                </p>
-            </div>
-        </div>
+            {% for item in json %}
 
-        <div class="card m-3 float-none" style="width: 26rem;">
-            <img src="https://picsum.photos/220" class="card-img-top object-fit-cover" alt="...">
-            <div class="card-body">
-                <p class="card-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pulvinar ex nec tellus consequat fermentum. Pellentesque venenatis nunc ac sapien varius tincidunt. Morbi pharetra quam vitae ex finibus, in dapibus libero rutrum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras egestas augue nibh, ac hendrerit dolor egestas et. Proin convallis ante dolor, ac egestas nulla ultricies vel. Sed id venenatis odio, sit amet condimentum ex. Quisque euismod consequat ligula. Mauris cursus dignissim ex, ut maximus metus fermentum bibendum. Sed commodo ex id facilisis laoreet. Fusce eleifend est massa, eget bibendum dolor semper quis. Pellentesque sodales lectus justo, vel ultrices sapien tincidunt vitae. Duis porta quam et tincidunt auctor.
-                </p>
-            </div>
-        </div>
+                <div class="card m-3 justify-content-center" style="width: 26rem;">
+                    <img src="{{ item.picture }}" class="card-img-top object-fit-cover" alt="...">
+                    <div class="card-body">
+                        <p class="card-text fw-bold fs-2">{{ item.firstname }} {{ item.lastname }} {% if item.firstname == 'Fabien' %} &#9829; {% endif %} </p>
+                        <p class="card-text fst-italic">Né le {{ item.dateOfBirth | date('d-m-Y') }}</p>
+                        <p class="card-text">Créateur de: <span class="text-decoration-underline">{{ item.creatorOf }}</span></p>
+                        <p class="card-text">{{ item.description }}</p>
+                    </div>
+                </div>
 
-        <div class="card m-3 float-end" style="width: 26rem;">
-            <img src="https://picsum.photos/250" class="card-img-top object-fit-cover" alt="...">
-            <div class="card-body">
-                <p class="card-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pulvinar ex nec tellus consequat fermentum. Pellentesque venenatis nunc ac sapien varius tincidunt. Morbi pharetra quam vitae ex finibus, in dapibus libero rutrum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras egestas augue nibh, ac hendrerit dolor egestas et. Proin convallis ante dolor, ac egestas nulla ultricies vel. Sed id venenatis odio, sit amet condimentum ex. Quisque euismod consequat ligula. Mauris cursus dignissim ex, ut maximus metus fermentum bibendum. Sed commodo ex id facilisis laoreet. Fusce eleifend est massa, eget bibendum dolor semper quis. Pellentesque sodales lectus justo, vel ultrices sapien tincidunt vitae. Duis porta quam et tincidunt auctor.
-                </p>
-            </div>
-        </div>
+            {% endfor %}
         </div>
     </div>
 
