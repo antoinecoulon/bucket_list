@@ -5,7 +5,7 @@
     "dateOfBirth": "1979-02-22",
     "creatorOf": "Symfony",
     "picture": "https://pbs.twimg.com/profile_images/1126770148092698625/nI58pL5O_200x200.png",
-    "description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, cumque facilis harum id ipsam necessitatibus veniam! Adipisci alias delectus harum impedit ipsum, iste laboriosam natus possimus provident ratione velit voluptatibus? "
+    "description" : "Ingénieur civil des Mines de Nancy et diplômé du mastère Entrepreneurs à HEC, Fabien Potencier a créé le framework Symfony dont il est le développeur principal. Co-fondateur de Sensio, il dirige Sensio Labs, agence spécialisée dans les technologies Open Source."
   },
   {
     "firstname": "Taylor",
@@ -13,7 +13,7 @@
     "dateOfBirth": "1982-10-10",
     "creatorOf": "Laravel",
     "picture": "https://avatars.githubusercontent.com/u/463230?v=4",
-    "description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, cumque facilis harum id ipsam necessitatibus veniam! Adipisci alias delectus harum impedit ipsum, iste laboriosam natus possimus provident ratione velit voluptatibus? "
+    "description" : "Taylor Otwell est un programmeur de l'Arkansas qui a rapidement eu un impact mondial. Diplômé de l'Arkansas Tech University, il est le développeur du framework PHP (Hypertext Preprocessor) le plus populaire au monde. Après avoir pris son premier emploi, Otwell s'est lancé dans un projet parallèle où il a développé Laravel, un framework PHP open source. Ce \"projet parallèle\" a décollé et est devenu une activité à temps plein."
   },
   {
     "firstname": "Jordi",
@@ -21,6 +21,6 @@
     "dateOfBirth": "1986-01-30",
     "creatorOf": "Composer",
     "picture": "https://avatars.githubusercontent.com/u/183678?v=4",
-    "description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, cumque facilis harum id ipsam necessitatibus veniam! Adipisci alias delectus harum impedit ipsum, iste laboriosam natus possimus provident ratione velit voluptatibus? "
+    "description" : "Jordi Boggiano est l'auteur de quelques applications et bibliothèques open source (Composer, Monolog, php-console, etc.) et un contributeur fréquent à d'autres projets (Symfony2, Twig, entre autres). Il est impliqué dans le développement web depuis plus de 10 ans, travaillant principalement avec PHP et JavaScript. Actuellement, il maintient Composer/Packagist tout en travaillant sur Toran Proxy."
   }
 ]
