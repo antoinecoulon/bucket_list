@@ -20,8 +20,9 @@ final class MainController extends AbstractController
     #[Route('/about', name: 'app_about')]
     public function about(): Response
     {
+        $json = json_decode(file_get_contents('../data/team.json'), true);
         return $this->render('main/about.html.twig', [
-
+            'json' => $json
         ]);
     }
 
