@@ -13,20 +13,9 @@
     {% endblock %}
 </head>
 <body>
-
-
-
+{# Le header et le footer sont visibles sur chaque page de l'app #}
 <header>
-    <div class="logo-container">
-        <img src="{{ asset("images/logo.svg") }}" alt="logo"/>
-        <h1>BUCKET LIST</h1>
-    </div>
-    <nav class="navbar bg-body-color">
-        <div class="container-fluid justify-content-start">
-            <a href="{{ path('app_home') }}"><button class="btn btn-outline-primary me-2" type="button">Home</button></a>
-            <a href="{{ path('app_about') }}"><button class="btn btn-sm btn-outline-secondary" type="button">About</button></a>
-        </div>
-    </nav>
+    {% include 'partials/_header.html.twig' %}
 </header>
 
 {# Le block body ci-dessous sera remplacé par les mêmes blocks des autres pages #}
@@ -38,7 +27,7 @@
 </main>
 
 <footer>
-    <p>@Bucket-List &copy; 2025</p>
+    {% include 'partials/_footer.html.twig' %}
 </footer>
 </body>
 </html>
