@@ -16,13 +16,18 @@ class WishRepository extends ServiceEntityRepository
         parent::__construct($registry, Wish::class);
     }
 
-    /** Méthode personnalisée pour récupérer une liste de wishes triés
+    /** Méthode personnalisée (version queryBuilder) pour récupérer une liste de wishes triés
      * Triés par date de création - descendant
      * @return array
      */
     public function findAllOrderedByDate(): array
     {
-        return $this->findBy([], ['dateCreatedAt' => 'DESC']);
+        $queryBuilder = $this->createQueryBuilder('query');
+        $queryBuilder->addOrderBy('query.dateCreatedAt', 'DESC');
+        $query = $queryBuilder->getQuery();
+        $query->setMaxResults(10);
+
+        return $query->getResult();
     }
 
 }
