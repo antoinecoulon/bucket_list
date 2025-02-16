@@ -5,12 +5,28 @@
 {% block body %}
 
     <h2>Liste des Wishes:</h2>
-    <ul>
+{#    <ul>#}
+{#        {% for wish in wishes %}#}
+{#            <li><a href="{{ path('wish_detail', {id: wish.id}) }}">{{ wish.title }}</a></li>#}
+{#            <li>{{ wish.description }}</li>#}
+{#            <li>{{ wish.dateCreatedAt|date('d/m/Y H:i') }}</li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+
+    <div class="container-sm text-center">
         {% for wish in wishes %}
-            <li><a href="{{ path('wish_detail', {id: wish.id}) }}">{{ wish.title }}</a></li>
-            <li>{{ wish.description }}</li>
-            <li>{{ wish.dateCreatedAt|date('d/m/Y H:i') }}</li>
+        <div class="row border-bottom border-primary mb-1">
+            <div class="col-2">
+                <a href="{{ path('wish_detail', {id: wish.id}) }}">{{ wish.title }}</a>
+            </div>
+            <div class="col-8">
+                {{ wish.description }}
+            </div>
+            <div class="col-2">
+                Créé le {{ wish.dateCreatedAt|date('d/m/Y H:i') }}
+            </div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 
 {% endblock %}
