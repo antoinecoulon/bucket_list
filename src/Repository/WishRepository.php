@@ -16,32 +16,13 @@ class WishRepository extends ServiceEntityRepository
         parent::__construct($registry, Wish::class);
     }
 
+    /** Méthode personnalisée pour récupérer une liste de wishes triés
+     * Triés par date de création - descendant
+     * @return array
+     */
     public function findAllOrderedByDate(): array
     {
         return $this->findBy([], ['dateCreatedAt' => 'DESC']);
     }
-    //    /**
-    //     * @return Wish[] Returns an array of Wish objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('w')
-    //            ->andWhere('w.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('w.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
 
-    //    public function findOneBySomeField($value): ?Wish
-    //    {
-    //        return $this->createQueryBuilder('w')
-    //            ->andWhere('w.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }
