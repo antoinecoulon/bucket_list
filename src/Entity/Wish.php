@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\WishRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -14,20 +15,20 @@ class Wish
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 250)]
+    #[ORM\Column(type: Types::STRING, length: 250)]
     #[Assert\NotBlank(message: 'Please enter title')]
     #[Assert\Length(min: 1, max: 250,
         minMessage: 'Too short, title should be at least {{ limit }} characters',
         maxMessage: 'Too long, title should be 250 characters or less')]
     private ?string $title = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     #[Assert\Length(min: 1, max: 250,
         minMessage: 'Too short, description should be at least {{ limit }} characters',
         maxMessage: 'Too long, description should be 255 characters or less')]
     private ?string $description = null;
 
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: Types::STRING, length: 50)]
     #[Assert\NotBlank(message: 'Please enter author')]
     #[Assert\Length(min: 1, max: 50,
         minMessage: 'Too short, title should be at least {{ limit }} characters',
