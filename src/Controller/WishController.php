@@ -55,15 +55,19 @@ final class WishController extends AbstractController
         $form = $this->createForm(WishType::class, $wish);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->persist($wish);
-            $this->entityManager->flush();
 
-            $this->addFlash('success', 'Wish was created!');
-            return $this->redirectToRoute('wish_list');
-        } else {
-            $this->addFlash('danger', 'Error: Wish was not created!');
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $this->entityManager->persist($wish);
+                $this->entityManager->flush();
+
+                $this->addFlash('success', 'Wish was created!');
+                return $this->redirectToRoute('wish_list');
+            } else {
+                $this->addFlash('danger', message: 'Error: Wish was not created.');
+            }
         }
+        //TODO: flash ne s'affiche pas de cette façon...
 
         return $this->render('wish/new.html.twig', [
             'wishForm' => $form->createView()
