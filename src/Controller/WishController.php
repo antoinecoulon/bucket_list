@@ -61,6 +61,8 @@ final class WishController extends AbstractController
 
             $this->addFlash('success', 'Wish was created!');
             return $this->redirectToRoute('wish_list');
+        } else {
+            $this->addFlash('danger', 'Error: Wish was not created!');
         }
 
         return $this->render('wish/new.html.twig', [
