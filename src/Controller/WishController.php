@@ -40,24 +40,10 @@ final class WishController extends AbstractController
         ]);
     }
 
-    // Future pour gérer le form
-//    #[Route('/wish/new', name: 'wish_new', methods: ['GET', 'POST'])]
-//    public function new(Request $request, EntityManagerInterface $entityManager): Response
-//    {
-//        $wish = new Wish();
-//        $form = $this->createForm(WishType::class, $wish);
-//
-//        $form->handleRequest($request);
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $entityManager->persist($wish);
-//            $entityManager->flush();
-//
-//            return $this->redirectToRoute('wish_list');
-//        }
-//
-//        return $this->render('wish/new.html.twig', [
-//            'form' => $form->createView(),
-//        ]);
-//    }
+    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+    public function new(): Response
+    {
+        return $this->render('wish/new.html.twig', []);
+    }
 
 }
