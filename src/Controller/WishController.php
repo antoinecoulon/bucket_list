@@ -5,8 +5,10 @@ namespace App\Controller;
 use App\Entity\Wish;
 use App\Form\WishType;
 use App\Repository\WishRepository;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
@@ -60,11 +62,19 @@ final class WishController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->persist($wish);
-            $this->entityManager->flush();
+            try {
+                //$wish->setIsPublished(true);
+                //$wish->setDateCreatedAt(new \DateTimeImmutable());// Génère la date automatiquement
 
-            $this->addFlash('success', 'Wish was created!');
-            return $this->redirectToRoute('wish_list');
+                $this->entityManager->persist($wish);
+                $this->entityManager->flush();
+
+                $this->addFlash('success', 'Wish was created!');
+                return $this->redirectToRoute('wish_list');
+            } catch (UniqueConstraintViolationException $e) {
+                //TODO: conserver la saisie utilisateur quand erreur
+                $form->get('title')->addError(new \Symfony\Component\Form\FormError('This title is already used!'));
+            }
         }
 
         return $this->render('wish/new.html.twig', [
