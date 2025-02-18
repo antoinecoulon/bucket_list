@@ -25,7 +25,7 @@ class WishRepository extends ServiceEntityRepository
         $queryBuilder = $this->createQueryBuilder('query');
         $queryBuilder->addOrderBy('query.dateCreatedAt', 'DESC');
         $query = $queryBuilder->getQuery();
-        $query->setMaxResults(10);
+        $query->setMaxResults(20);
 
         return $query->getResult();
     }
