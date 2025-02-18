@@ -5,9 +5,11 @@ namespace App\Entity;
 use App\Repository\WishRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: WishRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Wish
 {
     #[ORM\Id]
@@ -15,7 +17,7 @@ class Wish
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::STRING, length: 250)]
+    #[ORM\Column(type: Types::STRING, length: 250, unique: true)]
     #[Assert\NotBlank(message: 'Please enter title')]
     #[Assert\Length(min: 1, max: 250,
         minMessage: 'Too short, title should be at least {{ limit }} characters',
@@ -38,8 +40,16 @@ class Wish
     #[ORM\Column(nullable: true)]
     private ?bool $isPublished = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private ?\DateTimeImmutable $dateCreatedAt = null;
+
+    // Méthode appelée avant la persistence (avant les INSERT)
+    #[ORM\PrePersist]
+    public function setDefaultValues(): void
+    {
+        $this->isPublished = true;
+        $this->dateCreatedAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
