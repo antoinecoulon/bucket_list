@@ -8,15 +8,19 @@
 
     <div class="container-sm text-center">
         {% for wish in wishes %}
-        <div class="row border-bottom border-primary mb-1">
+        <div class="row border-bottom border-primary mb-1 p-1">
             <div class="col-2">
                 <a href="{{ path('wish_detail', {id: wish.id}) }}">{{ wish.title }}</a>
             </div>
-            <div class="col-8">
+            <div class="col-6">
                 {{ wish.description }}
             </div>
             <div class="col-2">
                 Créé le {{ wish.dateCreatedAt|date('d/m/Y H:i') }}
+            </div>
+            <div class="col-2">
+                <button type="button" class="d-inline-block btn btn-warning">Edit</button>
+                <a href="{{ path('wish_delete', {id: wish.id}) }}"><button type="button" class="d-inline-block btn btn-danger">Delete</button></a>
             </div>
         </div>
         {% endfor %}
