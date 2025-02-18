@@ -12,14 +12,18 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/wish', name: 'wish_', methods: ['GET'])]
 final class WishController extends AbstractController
 {
 
     private EntityManagerInterface $entityManager;
-    public function __construct(EntityManagerInterface $entityManager){
+    private SluggerInterface $slugger;
+
+    public function __construct(EntityManagerInterface $entityManager, SluggerInterface $slugger){
         $this->entityManager = $entityManager;
+        $this->slugger = $slugger;
     }
 
     /** READ ALL WISHES
@@ -63,8 +67,12 @@ final class WishController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                //$wish->setIsPublished(true);
-                //$wish->setDateCreatedAt(new \DateTimeImmutable());// Génère la date automatiquement
+                if ($form->get('image')->getData()) {
+                    $imageFile = $form->get('image')->getData();
+                    $slug = $this->slugger->slug($wish->getTitle());
+                    $newFileName = $slug . '-' . uniqid() . '.' . $imageFile->guessExtension();
+                    $imageFile->move('assets/uploads/', $newFileName);
+                }
 
                 $this->entityManager->persist($wish);
                 $this->entityManager->flush();

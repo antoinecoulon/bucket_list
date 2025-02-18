@@ -43,6 +43,9 @@ class Wish
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private ?\DateTimeImmutable $dateCreatedAt = null;
 
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    private ?string $image = null;
+
     // Méthode appelée avant la persistence (avant les INSERT)
     #[ORM\PrePersist]
     public function setDefaultValues(): void
@@ -112,6 +115,18 @@ class Wish
     public function setDateCreatedAt(?\DateTimeImmutable $dateCreatedAt): static
     {
         $this->dateCreatedAt = $dateCreatedAt;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
