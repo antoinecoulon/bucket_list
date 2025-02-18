@@ -20,7 +20,7 @@
             </div>
             <div class="col-2">
                 <a href="{{ path('wish_edit', {id: wish.id}) }}"><button type="button" class="d-inline-block btn btn-warning">Edit</button></a>
-                <a href="{{ path('wish_delete', {id: wish.id}) }}"><button type="button" class="d-inline-block btn btn-danger">Delete</button></a>
+                <a href="{{ path('wish_delete', {id: wish.id}) }}"><button type="button" class="d-inline-block btn btn-danger" onclick="return confirm('Really???')">Delete</button></a>
             </div>
         </div>
         {% endfor %}
