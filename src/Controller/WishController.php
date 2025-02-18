@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class WishController extends AbstractController
 {
 
-    private $entityManager;
+    private EntityManagerInterface $entityManager;
     public function __construct(EntityManagerInterface $entityManager){
         $this->entityManager = $entityManager;
     }
@@ -36,18 +36,21 @@ final class WishController extends AbstractController
     }
 
     /** Récupère l'id du wish cliqué et affiche les détails
-     * @param $id
      * @param Wish $wish
      * @return Response
      */
     #[Route('/{id}', name: 'detail', requirements: ['id'=>'\d+'], methods: ['GET'])]
-    public function detail($id, Wish $wish): Response
+    public function detail(Wish $wish): Response
     {
         return $this->render('wish/detail.html.twig', [
             'wish' => $wish
         ]);
     }
 
+    /** Créer un nouveau Wish
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
@@ -56,22 +59,29 @@ final class WishController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            if ($form->isValid()) {
-                $this->entityManager->persist($wish);
-                $this->entityManager->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->persist($wish);
+            $this->entityManager->flush();
 
-                $this->addFlash('success', 'Wish was created!');
-                return $this->redirectToRoute('wish_list');
-            } else {
-                $this->addFlash('danger', message: 'Error: Wish was not created.');
-            }
+            $this->addFlash('success', 'Wish was created!');
+            return $this->redirectToRoute('wish_list');
         }
-        //TODO: flash ne s'affiche pas de cette façon...
 
         return $this->render('wish/new.html.twig', [
-            'wishForm' => $form->createView()
+            'wishForm' => $form
         ]);
+    }
+
+    /** Supprimer un wish
+     * @param Wish $wish
+     * @return Response
+     */
+    #[Route('/delete/{id}', name: 'delete', requirements: ['id'=>'\d+'], methods: ['DELETE'])]
+    public function delete(Wish $wish): Response
+    {
+        $this->entityManager->remove($wish);
+        $this->entityManager->flush();
+        return $this->redirectToRoute('wish_list');
     }
 
 }
