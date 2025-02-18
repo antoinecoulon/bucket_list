@@ -21,7 +21,7 @@
                 >
 
                 {% for error in field_errors(wishForm.title) %}
-                    <div class="error">{{ error }}</div>
+                    <div class="alert alert-danger error">{{ error }}</div>
                 {% endfor %}
             </div>
 
@@ -35,7 +35,7 @@
                 ></textarea>
 
                 {% for error in field_errors(wishForm.description) %}
-                    <div class="error">{{ error }}</div>
+                    <div class="alert alert-danger error">{{ error }}</div>
                 {% endfor %}
             </div>
 
@@ -50,7 +50,7 @@
                 >
 
                 {% for error in field_errors(wishForm.author) %}
-                    <div class="error">{{ error }}</div>
+                    <div class="alert alert-danger error">{{ error }}</div>
                 {% endfor %}
             </div>
 
