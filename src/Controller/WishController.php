@@ -20,8 +20,8 @@ final class WishController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    /** Appel de la fonction personalisée du repository.
-     * Affiche tous les wishes triés du plus récent au plus ancien
+    /** READ ALL WISHES
+     * Appel de la fonction personalisée du repository
      * @param WishRepository $wishRepository
      * @return Response
      */
@@ -35,7 +35,7 @@ final class WishController extends AbstractController
         ]);
     }
 
-    /** Récupère l'id du wish cliqué et affiche les détails
+    /** READ WISH BY ID
      * @param Wish $wish
      * @return Response
      */
@@ -47,7 +47,7 @@ final class WishController extends AbstractController
         ]);
     }
 
-    /** Créer un nouveau Wish
+    /** CREATE WISH
      * @param Request $request
      * @return Response
      */
@@ -72,7 +72,30 @@ final class WishController extends AbstractController
         ]);
     }
 
-    /** Supprimer un wish
+    /** UPDATE WISH
+     * @param Request $request
+     * @param Wish $wish
+     * @return Response
+     */
+    #[Route('/edit/{id}', name: 'edit', requirements: ['id'=>'\d+'], methods: ['GET', 'POST'])]
+    public function edit(Request $request, Wish $wish): Response
+    {
+        $form = $this->createForm(WishType::class, $wish);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->flush();
+            $this->addFlash('success', 'Wish was updated!');
+            return $this->redirectToRoute('wish_list');
+        }
+
+        return $this->render('wish/edit.html.twig', [
+            'wish' => $wish,
+            'wishForm' => $form
+        ]);
+    }
+
+    /** DELETE WISH
      * @param Wish $wish
      * @return Response
      */
