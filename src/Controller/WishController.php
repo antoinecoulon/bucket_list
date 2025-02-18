@@ -26,7 +26,8 @@ final class WishController extends AbstractController
         $this->slugger = $slugger;
     }
 
-    /** READ ALL WISHES
+    /**
+     * READ ALL WISHES
      * Appel de la fonction personalisée du repository
      * @param WishRepository $wishRepository
      * @return Response
@@ -41,7 +42,8 @@ final class WishController extends AbstractController
         ]);
     }
 
-    /** READ WISH BY ID
+    /**
+     * READ WISH BY ID
      * @param Wish $wish
      * @return Response
      */
@@ -53,7 +55,8 @@ final class WishController extends AbstractController
         ]);
     }
 
-    /** CREATE WISH
+    /**
+     * CREATE WISH
      * @param Request $request
      * @return Response
      */
@@ -67,11 +70,13 @@ final class WishController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
+                // On teste si une image a été uploadé
                 if ($form->get('image')->getData()) {
                     $imageFile = $form->get('image')->getData();
                     $slug = $this->slugger->slug($wish->getTitle());
                     $newFileName = $slug . '-' . uniqid() . '.' . $imageFile->guessExtension();
-                    $imageFile->move('assets/uploads/', $newFileName);
+                    $imageFile->move($this->getParameter('upload_directory'), $newFileName);
+                    $wish->setImage($newFileName);
                 }
 
                 $this->entityManager->persist($wish);
@@ -90,7 +95,8 @@ final class WishController extends AbstractController
         ]);
     }
 
-    /** UPDATE WISH
+    /**
+     * UPDATE WISH
      * @param Request $request
      * @param Wish $wish
      * @return Response
@@ -113,7 +119,8 @@ final class WishController extends AbstractController
         ]);
     }
 
-    /** DELETE WISH
+    /**
+     * DELETE WISH
      * @param Wish $wish
      * @return Response
      */
