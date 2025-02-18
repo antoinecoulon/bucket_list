@@ -3,8 +3,25 @@
 {% block title %} {{ parent() }} - Détail wish {% endblock %}
 
 {% block body %}
-    <h1>Détail du Souhait : {{ wish.title }}</h1>
-    <p><strong>Description :</strong> {{ wish.description }}</p>
-    <p><strong>Créé le :</strong> {{ wish.dateCreatedAt|date('d/m/Y H:i') }} par : {{ wish.author }}</p>
+    <section id="wish-detail">
+        <div>
+            <h1>{{ wish.title }}</h1>
+            <p><strong>Créé le :</strong> {{ wish.dateCreatedAt|date('d/m/Y H:i') }} par : {{ wish.author }}</p>
+        </div>
+
+        <div class="m-4">
+            <img class="shadow bg-body-primary rounded" src="https://picsum.photos/500/300.webp" alt="random-image" />
+        </div>
+
+        <div>
+            <p>{{ wish.description }}</p>
+        </div>
+
+        <div>
+            <a href="{{ path('wish_edit', {id: wish.id}) }}"><button type="button" class="d-inline-block btn btn-warning">Edit</button></a>
+            <a href="{{ path('wish_delete', {id: wish.id}) }}"><button type="button" class="d-inline-block btn btn-danger">Delete</button></a>
+        </div>
+    </section>
+
     {# TODO: ajouter image #}
 {% endblock %}
