@@ -15,6 +15,11 @@ body {
     text-align: center;
 }
 
+main {
+    margin: 0 auto;
+    width: 80%;
+}
+
 .container {
     margin: 0 auto;
     width: 80%;
@@ -72,6 +77,18 @@ footer {
     color: #fdf0d5;
     border-top: 2px solid #669bbc;
     text-align: center;
+}
+
+label {
+    display: block;
+}
+input,
+textarea,
+select {
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    width: 150px;
+    max-width: 50%;
 }
 
 /*background*/

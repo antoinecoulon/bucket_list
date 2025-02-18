@@ -4,35 +4,22 @@
 
 {% block body %}
 
-    <table class="table">
-        <thead>
-        <tr class="">
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>The Bird</td>
-            <td>@twitter</td>
-        </tr>
-        </tbody>
-    </table>
+    <h2>Liste des Wishes:</h2>
+
+    <div class="container-sm text-center">
+        {% for wish in wishes %}
+        <div class="row border-bottom border-primary mb-1">
+            <div class="col-2">
+                <a href="{{ path('wish_detail', {id: wish.id}) }}">{{ wish.title }}</a>
+            </div>
+            <div class="col-8">
+                {{ wish.description }}
+            </div>
+            <div class="col-2">
+                Créé le {{ wish.dateCreatedAt|date('d/m/Y H:i') }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}
