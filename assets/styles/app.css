@@ -85,7 +85,7 @@ label {
 input,
 textarea,
 select {
-    margin-bottom: 1rem;
+    margin: 0 auto 1rem auto;
     box-sizing: border-box;
     width: 150px;
     max-width: 50%;
