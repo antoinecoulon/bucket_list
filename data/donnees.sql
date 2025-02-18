@@ -1,0 +1,16 @@
+INSERT INTO wish (title, description, author, is_published, date_created_at) VALUES
+    ('Voyager au Japon', 'Explorer Tokyo, Kyoto et déguster des sushis authentiques.', 'Alice Dupont', true, '2023-06-15'),
+    ('Apprendre à jouer du piano', 'Prendre des cours et savoir jouer "Clair de Lune" de Debussy.', 'Lucas Martin', true, '2022-09-22'),
+    ('Sauter en parachute', 'Vivre une montée d’adrénaline en sautant d’un avion à 4000 mètres.', 'Emma Robert', true, '2024-01-10'),
+    ('Écrire un livre', 'Publier un roman inspiré de mes voyages et expériences.', 'Thomas Bernard', true, '2021-12-05'),
+    ('Faire un road trip aux États-Unis', 'Traverser la Route 66 en voiture avec des amis.', 'Sophie Lefèvre', true, '2023-03-18'),
+    ('Nager avec des dauphins', 'Partir en excursion pour voir ces magnifiques animaux de près.', 'Maxime Dubois', true, '2022-07-30'),
+    ('Devenir polyglotte', 'Apprendre 5 langues et pouvoir parler couramment.', 'Isabelle Girard', true, '2024-02-01'),
+    ('Assister à un concert de Coldplay', 'Vivre un concert inoubliable dans un stade rempli de fans.', 'Nicolas Fontaine', true, '2023-11-12'),
+    ('Faire un marathon', 'M’entraîner sérieusement et courir les 42 km d’un marathon officiel.', 'Camille Morel', true, '2022-04-25'),
+    ('Voir une aurore boréale', 'Aller en Norvège ou en Islande pour admirer ce spectacle naturel.', 'Julien Lambert', true, '2023-08-14'),
+    ('Apprendre la photographie', 'Maîtriser l’art de capturer des instants uniques en image.', 'Elodie Richard', true, '2022-10-09'),
+    ('Construire ma propre maison', 'Avoir un foyer conçu selon mes envies et besoins.', 'Antoine Caron', true, '2024-01-28'),
+    ('Faire du bénévolat à l’étranger', 'Aider des populations en difficulté et découvrir de nouvelles cultures.', 'Marine Renaud', true, '2023-05-20'),
+    ('Apprendre à cuisiner des plats gastronomiques', 'Suivre des cours de cuisine avec un chef étoilé.', 'Paul Fournier', true, '2022-06-17'),
+    ('Plonger dans la Grande Barrière de Corail', 'Explorer l’un des plus beaux récifs coralliens du monde.', 'Laura Petit', true, '2023-09-03');
