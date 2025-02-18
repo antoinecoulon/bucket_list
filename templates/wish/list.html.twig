@@ -19,7 +19,7 @@
                 Créé le {{ wish.dateCreatedAt|date('d/m/Y H:i') }}
             </div>
             <div class="col-2">
-                <button type="button" class="d-inline-block btn btn-warning">Edit</button>
+                <a href="{{ path('wish_edit', {id: wish.id}) }}"><button type="button" class="d-inline-block btn btn-warning">Edit</button></a>
                 <a href="{{ path('wish_delete', {id: wish.id}) }}"><button type="button" class="d-inline-block btn btn-danger">Delete</button></a>
             </div>
         </div>
