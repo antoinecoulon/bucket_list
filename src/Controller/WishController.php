@@ -114,6 +114,9 @@ final class WishController extends AbstractController
     {
         $this->entityManager->remove($wish);
         $this->entityManager->flush();
+
+        $this->addFlash('success', 'Wish was deleted!');
+
         return $this->redirectToRoute('wish_list');
     }
 
