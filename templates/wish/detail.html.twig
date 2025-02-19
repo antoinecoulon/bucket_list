@@ -15,6 +15,11 @@
 
         <div>
             <p>{{ wish.description }}</p>
+            <p>
+                {% for categories in wish.categories %}
+                    [{{ categories }}]
+                {% endfor %}
+            </p>
         </div>
 
         <div>

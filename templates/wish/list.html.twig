@@ -10,7 +10,12 @@
         {% for wish in wishes %}
         <div class="row border-bottom border-primary mb-1 p-1">
             <div class="col-2">
-                <a href="{{ path('wish_detail', {id: wish.id}) }}">{{ wish.title }}</a>
+                <a href="{{ path('wish_detail', {id: wish.id}) }}">
+                    {{ wish.title }}<br/>
+                    {% for categories in wish.categories %}
+                    [{{ categories }}]
+                    {% endfor %}
+                </a>
             </div>
             <div class="col-6">
                 {{ wish.description }}

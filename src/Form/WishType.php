@@ -2,7 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Wish;
+use App\Repository\CategoryRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -13,6 +16,7 @@ use Symfony\Component\Validator\Constraints\File;
 
 class WishType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -44,6 +48,13 @@ class WishType extends AbstractType
                         'mimeTypesMessage' => 'Please upload a valid image',
                     ])
                 ]
+            ])
+            ->add('categories', EntityType::class, [
+                'label' => 'Categories',
+                'class' => Category::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'placeholder' => 'Select a category',
             ])
         ;
     }
