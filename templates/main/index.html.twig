@@ -15,9 +15,11 @@
         >
         </dotlottie-player>
 
-
+        {% if app.user %}
         <h1>Hello {{ user }}!</h1>
-
+        {% else %}
+        <h2>Log in to see all features !</h2>
+        {% endif %}
         <p>
             Vous êtes sur le site {{ site_name }} !
         </p>
