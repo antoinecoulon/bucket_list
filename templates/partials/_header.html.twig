@@ -24,6 +24,8 @@
         <a href="{{ path('app_contact') }}"><button class="btn btn-sm btn-outline-secondary me-2" type="button">Contact</button></a>
 
         <a href="{{ path('wish_list') }}"><button class="btn btn-outline-primary me-2">All wishes</button></a>
-        <a href="{{ path('wish_new') }}"><button class="btn btn-sm btn-outline-secondary me-2" type="button">Add a wish</button></a>
+        {% if app.user %}
+            <a href="{{ path('wish_new') }}"><button class="btn btn-sm btn-outline-secondary me-2" type="button">Add a wish</button></a>
+        {% endif %}
     </div>
 </nav>
