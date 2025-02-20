@@ -11,9 +11,11 @@ final class MainController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function home(): Response
     {
+        $this->getUser() ? $user = $this->getUser()->getUserIdentifier() : $user = 'null';
+
         return $this->render('main/index.html.twig', [
             'site_name' => 'Bucket List',
-            'user' => 'Admin'
+            'user' => $user
         ]);
     }
 

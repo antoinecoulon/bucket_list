@@ -39,7 +39,7 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 110px;
-    padding: 10px 100px;
+    padding: 80px 100px;
     background-color: #003049;
     margin-bottom: 1rem;
     border-bottom: 2px solid #669bbc;
@@ -79,8 +79,8 @@ header {
 
 header img {
     width: 130px;
-    margin-left: 50px;
-    margin-right: 15px;
+    margin: 50px 50px 50px 10px;
+
 }
 
 nav ul {
