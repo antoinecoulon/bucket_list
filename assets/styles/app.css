@@ -74,11 +74,11 @@ header {
 
 .logo-container {
     display: flex;
-    align-items: center;
+    align-items: baseline;
 }
 
 header img {
-    width: 50px;
+    width: 130px;
     margin-left: 50px;
     margin-right: 15px;
 }
