@@ -68,6 +68,7 @@ final class WishController extends AbstractController
     public function new(Request $request): Response
     {
         $wish = new Wish();
+        $wish->setAuthor($this->getUser()->getUserIdentifier());
         $form = $this->createForm(WishType::class, $wish);
 
         $form->handleRequest($request);
@@ -78,7 +79,7 @@ final class WishController extends AbstractController
                 if ($form->get('image')->getData()) {
                     $imageFile = $form->get('image')->getData();
                     $slug = $this->slugger->slug($wish->getTitle());
-                    $newFileName = $slug . '-' . uniqid() . '.' . $imageFile->guessExtension();
+                    $newFileName = $slug . '-' . uniqid('', false) . '.' . $imageFile->guessExtension();
                     $imageFile->move($this->getParameter('upload_directory'), $newFileName);
                     $wish->setImage($newFileName);
                 }

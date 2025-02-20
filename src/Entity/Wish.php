@@ -33,10 +33,6 @@ class Wish
     private ?string $description = null;
 
     #[ORM\Column(type: Types::STRING, length: 50)]
-    #[Assert\NotBlank(message: 'Please enter author')]
-    #[Assert\Length(min: 1, max: 50,
-        minMessage: 'Too short, title should be at least {{ limit }} characters',
-        maxMessage: 'Too long, title should be 50 characters or less')]
     private ?string $author = null;
 
     #[ORM\Column(nullable: true)]

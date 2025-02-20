@@ -28,10 +28,6 @@ class WishType extends AbstractType
                 'label' => 'Description',
                 'required' => false,
             ])
-            ->add('author', TextType::class, [
-                'label' => 'Author',
-                'required' => true,
-            ])
             ->add('image', FileType::class, [
                 'label' => 'Image',
                 'required' => false,
