@@ -16,12 +16,12 @@
         </dotlottie-player>
 
         {% if app.user %}
-        <h1>Hello {{ user }}!</h1>
+        <h1>Hello <span class="text-decoration-underline">{{ user }}</span>!</h1>
         {% else %}
         <h2>Log in to see all features !</h2>
         {% endif %}
-        <p>
-            Vous êtes sur le site {{ site_name }} !
+        <p class="mt-4">
+            You are on the world's most famous website <span class="fs-3">{{ site_name }}</span> !
         </p>
 
         <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>

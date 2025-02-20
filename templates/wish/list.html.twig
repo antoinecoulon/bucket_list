@@ -1,19 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ parent() }} - Liste wish {% endblock %}
+{% block title %} {{ parent() }} - Wish List {% endblock %}
 
 {% block body %}
 
-    <h2>Liste des Wishes:</h2>
+    <h2 class="mb-5">All Wishes:</h2>
 
     <div class="container-sm text-center">
+        <div class="row border-start border-bottom border-dark-subtle mb-2 p-2 fs-4 text-decoration-underline bg-primary bg-gradient text-secondary-emphasis">
+            <div class="col-2">Title</div>
+            <div class="col-6">Description</div>
+            <div class="col-2">Created at</div>
+            <div class="col-2"></div>
+        </div>
         {% for wish in wishes %}
-        <div class="row border-bottom border-primary mb-1 p-1">
-            <div class="col-2">
+        <div class="row border-start border-bottom border-primary mb-2 p-2 align-items-center">
+            <div class="col-2 border-end">
                 <a href="{{ path('wish_detail', {id: wish.id}) }}">
-                    {{ wish.title }}<br/>
+                    <span class="fs-5">{{ wish.title }}</span><br/>
                     {% for categories in wish.categories %}
-                    [{{ categories }}]
+                        <span class="fs-6 text-secondary">[{{ categories }}]</span>
                     {% endfor %}
                 </a>
             </div>
@@ -21,11 +27,15 @@
                 {{ wish.description }}
             </div>
             <div class="col-2">
-                Créé le {{ wish.dateCreatedAt|date('d/m/Y H:i') }}
+                {{ wish.dateCreatedAt|date('d/m/Y H:i') }}
             </div>
             <div class="col-2">
-                <a href="{{ path('wish_edit', {id: wish.id}) }}"><button type="button" class="d-inline-block btn btn-warning">Edit</button></a>
-                <a href="{{ path('wish_delete', {id: wish.id}) }}"><button type="button" class="d-inline-block btn btn-danger" onclick="return confirm('Really???')">Delete</button></a>
+                {% if app.user.username is same as(wish.author) %}
+                    <a href="{{ path('wish_edit', {id: wish.id}) }}"><button type="button" class="d-inline-block btn btn-warning">Edit</button></a>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') or app.user.username is same as(wish.author) %}
+                    <a href="{{ path('wish_delete', {id: wish.id}) }}"><button type="button" class="d-inline-block btn btn-danger" onclick="return confirm('Really???')">Delete</button></a>
+                {% endif %}
             </div>
         </div>
         {% endfor %}

@@ -36,19 +36,6 @@
             </div>
 
             <div class="group">
-                <label for="{{ field_name(wishForm.author) }}">Author:</label>
-                <input type="text"
-                       id="{{ field_name(wishForm.author) }}"
-                       name="{{ field_name(wishForm.author) }}"
-                       class="form-control"
-                >
-
-                {% for error in field_errors(wishForm.author) %}
-                    <div class="alert alert-danger error">{{ error }}</div>
-                {% endfor %}
-            </div>
-
-            <div class="group">
                 <label for="{{ field_name(wishForm.image) }}">Upload an image:</label>
                 <input type="file"
                        id="{{ field_name(wishForm.image) }}"

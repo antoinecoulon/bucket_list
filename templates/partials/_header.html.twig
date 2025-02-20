@@ -13,7 +13,7 @@
     {% endif %}
     {% if app.user %}
         <div class="mt-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+            You are logged in as <span class="text-decoration-underline">{{ app.user.userIdentifier }}</span>, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
 </div>

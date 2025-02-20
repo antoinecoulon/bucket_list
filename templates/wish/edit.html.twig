@@ -33,20 +33,6 @@
         {% endfor %}
     </div>
 
-    <div class="group">
-        <label for="{{ field_name(wishForm.author) }}">Author: </label>
-        <input type="text"
-               id="{{ field_name(wishForm.author) }}"
-               name="{{ field_name(wishForm.author) }}"
-               value="{{ field_value(wishForm.author) }}"
-               class="form-control"
-               readonly
-        >
-        {% for error in field_errors(wishForm.author) %}
-            <div class="alert alert-danger error">{{ error }}</div>
-        {% endfor %}
-    </div>
-
     <button class="btn btn-primary">Edit!</button>
     {{ form_end(wishForm) }}
 
