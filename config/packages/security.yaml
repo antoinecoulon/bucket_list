@@ -31,6 +31,7 @@ security:
             login_throttling:
                 max_attempts: 3
                 interval: '3 minutes'
+            entry_point: App\Security\AuthenticationEntryPoint
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
