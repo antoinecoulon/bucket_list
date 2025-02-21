@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Error 404{% endblock %}
+
+{% block body %}
+
+    <h1>OUPS! Erreur {{ status_code }}...</h1>
+
+    <p>{{ status_text }}</p>
+
+{% endblock %}

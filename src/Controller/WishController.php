@@ -120,7 +120,7 @@ final class WishController extends AbstractController
 
             $wish->setTitle($censurator->purify($form->get('title')->getData()));
             $wish->setDescription($censurator->purify($form->get('description')->getData()));
-            
+
             $this->entityManager->flush();
             $this->addFlash('success', 'Wish was updated!');
             return $this->redirectToRoute('wish_list');
