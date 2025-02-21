@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Wish;
 use App\Form\WishType;
+use App\Helper\UploadFile;
 use App\Repository\CategoryRepository;
 use App\Repository\WishRepository;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
@@ -65,7 +66,7 @@ final class WishController extends AbstractController
      */
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
-    public function new(Request $request): Response
+    public function new(Request $request, UploadFile $uploadFile): Response
     {
         $wish = new Wish();
         $wish->setAuthor($this->getUser()->getUserIdentifier());
@@ -77,11 +78,9 @@ final class WishController extends AbstractController
             try {
                 // On teste si une image a été uploadé
                 if ($form->get('image')->getData()) {
-                    $imageFile = $form->get('image')->getData();
-                    $slug = $this->slugger->slug($wish->getTitle());
-                    $newFileName = $slug . '-' . uniqid('', false) . '.' . $imageFile->guessExtension();
-                    $imageFile->move($this->getParameter('upload_directory'), $newFileName);
-                    $wish->setImage($newFileName);
+                    $file = $form->get('image')->getData();
+                    $name = $uploadFile->upload($file, $wish->getTitle(), $this->getParameter('upload_directory'));
+                    $wish->setImage($name);
                 }
 
                 $this->entityManager->persist($wish);
