@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Wish;
 use App\Form\WishType;
+use App\Helper\Censurator;
 use App\Helper\UploadFile;
 use App\Repository\CategoryRepository;
 use App\Repository\WishRepository;
@@ -66,7 +67,7 @@ final class WishController extends AbstractController
      */
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
-    public function new(Request $request, UploadFile $uploadFile): Response
+    public function new(Request $request, UploadFile $uploadFile, Censurator $censurator): Response
     {
         $wish = new Wish();
         $wish->setAuthor($this->getUser()->getUserIdentifier());
@@ -75,6 +76,7 @@ final class WishController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             try {
                 // On teste si une image a été uploadé
                 if ($form->get('image')->getData()) {
@@ -82,6 +84,9 @@ final class WishController extends AbstractController
                     $name = $uploadFile->upload($file, $wish->getTitle(), $this->getParameter('upload_directory'));
                     $wish->setImage($name);
                 }
+
+                $wish->setTitle($censurator->purify($form->get('title')->getData()));
+                $wish->setDescription($censurator->purify($form->get('description')->getData()));
 
                 $this->entityManager->persist($wish);
                 $this->entityManager->flush();
@@ -106,12 +111,16 @@ final class WishController extends AbstractController
      * @return Response
      */
     #[Route('/edit/{id}', name: 'edit', requirements: ['id'=>'\d+'], methods: ['GET', 'POST'])]
-    public function edit(Request $request, Wish $wish): Response
+    public function edit(Request $request, Wish $wish, Censurator $censurator): Response
     {
         $form = $this->createForm(WishType::class, $wish);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $wish->setTitle($censurator->purify($form->get('title')->getData()));
+            $wish->setDescription($censurator->purify($form->get('description')->getData()));
+            
             $this->entityManager->flush();
             $this->addFlash('success', 'Wish was updated!');
             return $this->redirectToRoute('wish_list');
